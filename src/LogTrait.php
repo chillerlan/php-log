@@ -19,12 +19,12 @@ use Psr\Log\LoggerInterface;
  * @implements \Psr\Log\LoggerAwareInterface
  * @implements \Psr\Log\LoggerInterface
  */
-class LogTrait{
+trait LogTrait{
 
 	/**
 	 * @var \chillerlan\Logger\Log
 	 */
-	private $log;
+	protected $log;
 
 	/**
 	 * Sets a logger.
