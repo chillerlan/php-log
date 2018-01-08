@@ -49,10 +49,10 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function log($level, $message, array $context = []){
+	protected function log($level, $message, array $context = null){
 
 		if($this->log instanceof LoggerInterface){
-			$this->log->log($level, $message, $context);
+			$this->log->log($level, $message, $context ?? []);
 		}
 
 		return $this;
@@ -66,7 +66,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function emergency($message, array $context = []){
+	protected function emergency($message, array $context = null){
 		$this->log(LogLevel::EMERGENCY, $message, $context);
 
 		return $this;
@@ -83,7 +83,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function alert($message, array $context = []){
+	protected function alert($message, array $context = null){
 		$this->log(LogLevel::ALERT, $message, $context);
 
 		return $this;
@@ -99,7 +99,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function critical($message, array $context = []){
+	protected function critical($message, array $context = null){
 		$this->log(LogLevel::CRITICAL, $message, $context);
 
 		return $this;
@@ -114,7 +114,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function error($message, array $context = []){
+	protected function error($message, array $context = null){
 		$this->log(LogLevel::ERROR, $message, $context);
 
 		return $this;
@@ -131,7 +131,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function warning($message, array $context = []){
+	protected function warning($message, array $context = null){
 		$this->log(LogLevel::WARNING, $message, $context);
 
 		return $this;
@@ -145,7 +145,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function notice($message, array $context = []){
+	protected function notice($message, array $context = null){
 		$this->log(LogLevel::NOTICE, $message, $context);
 
 		return $this;
@@ -161,7 +161,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function info($message, array $context = []){
+	protected function info($message, array $context = null){
 		$this->log(LogLevel::INFO, $message, $context);
 
 		return $this;
@@ -175,7 +175,7 @@ trait LogTrait{
 	 *
 	 * @return $this
 	 */
-	protected function debug($message, array $context = []){
+	protected function debug($message, array $context = null){
 		$this->log(LogLevel::DEBUG, $message, $context);
 
 		return $this;
