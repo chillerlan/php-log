@@ -13,6 +13,7 @@
 namespace chillerlan\Logger;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  *
@@ -49,7 +50,10 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function log($level, $message, array $context = []){
-		$this->log->log($level, $message, $context);
+
+		if($this->log instanceof LoggerInterface){
+			$this->log->log($level, $message, $context);
+		}
 
 		return $this;
 	}
@@ -63,7 +67,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function emergency($message, array $context = []){
-		$this->log->emergency($message, $context);
+		$this->log(LogLevel::EMERGENCY, $message, $context);
 
 		return $this;
 	}
@@ -80,7 +84,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function alert($message, array $context = []){
-		$this->log->alert($message, $context);
+		$this->log(LogLevel::ALERT, $message, $context);
 
 		return $this;
 	}
@@ -96,7 +100,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function critical($message, array $context = []){
-		$this->log->critical($message, $context);
+		$this->log(LogLevel::CRITICAL, $message, $context);
 
 		return $this;
 	}
@@ -111,7 +115,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function error($message, array $context = []){
-		$this->log->error($message, $context);
+		$this->log(LogLevel::ERROR, $message, $context);
 
 		return $this;
 	}
@@ -128,7 +132,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function warning($message, array $context = []){
-		$this->log->warning($message, $context);
+		$this->log(LogLevel::WARNING, $message, $context);
 
 		return $this;
 	}
@@ -142,7 +146,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function notice($message, array $context = []){
-		$this->log->notice($message, $context);
+		$this->log(LogLevel::NOTICE, $message, $context);
 
 		return $this;
 	}
@@ -158,7 +162,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function info($message, array $context = []){
-		$this->log->info($message, $context);
+		$this->log(LogLevel::INFO, $message, $context);
 
 		return $this;
 	}
@@ -172,7 +176,7 @@ trait LogTrait{
 	 * @return $this
 	 */
 	protected function debug($message, array $context = []){
-		$this->log->debug($message, $context);
+		$this->log(LogLevel::DEBUG, $message, $context);
 
 		return $this;
 	}
