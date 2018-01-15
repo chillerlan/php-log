@@ -16,12 +16,12 @@ namespace chillerlan\Logger\Output;
  */
 class ConsoleLog extends LogOutputAbstract{
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		echo $this->message($level, $message, $context);
 	}
 
 	public function close():LogOutputInterface{
-		echo  $this->message('-', 'fin');
+		echo  $this->message('log closed', '~~~');
 
 		return $this;
 	}

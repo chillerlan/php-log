@@ -29,7 +29,7 @@ class Syslog extends LogOutputAbstract{
 		LogLevel::EMERGENCY => LOG_EMERG,
 	];
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		syslog($this::syslogLevels[$level], $message);
 	}
 

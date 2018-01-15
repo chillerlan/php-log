@@ -38,7 +38,7 @@ class DatabaseLog extends LogOutputAbstract{
 		$this->db->connect();
 	}
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		// TODO: Implement log() method.
 	}
 }

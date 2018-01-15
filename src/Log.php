@@ -104,10 +104,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 * @throws \chillerlan\Logger\LogException
 	 */
-	public function log($level, $message, array $context = []):Log{
+	public function log($level, $message, array $context = []){
 
 		if(empty($this->instances)){
 			throw new LogException('no logger instance available');
@@ -117,7 +117,6 @@ class Log implements LoggerInterface{
 			$logger->log($level, $message, $context);
 		}
 
-		return $this;
 	}
 
 	/**
@@ -126,10 +125,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function emergency($message, array $context = []):Log{
-		return $this->log(LogLevel::EMERGENCY, $message, $context);
+	public function emergency($message, array $context = []){
+		$this->log(LogLevel::EMERGENCY, $message, $context);
 	}
 
 	/**
@@ -141,10 +140,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function alert($message, array $context = []):Log{
-		return $this->log(LogLevel::ALERT, $message, $context);
+	public function alert($message, array $context = []){
+		$this->log(LogLevel::ALERT, $message, $context);
 	}
 
 	/**
@@ -155,10 +154,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function critical($message, array $context = []):Log{
-		return $this->log(LogLevel::CRITICAL, $message, $context);
+	public function critical($message, array $context = []){
+		$this->log(LogLevel::CRITICAL, $message, $context);
 	}
 
 	/**
@@ -168,10 +167,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function error($message, array $context = []):Log{
-		return $this->log(LogLevel::ERROR, $message, $context);
+	public function error($message, array $context = []){
+		$this->log(LogLevel::ERROR, $message, $context);
 	}
 
 	/**
@@ -183,10 +182,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function warning($message, array $context = []):Log{
-		return $this->log(LogLevel::WARNING, $message, $context);
+	public function warning($message, array $context = []){
+		$this->log(LogLevel::WARNING, $message, $context);
 	}
 
 	/**
@@ -195,10 +194,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function notice($message, array $context = []):Log{
-		return $this->log(LogLevel::NOTICE, $message, $context);
+	public function notice($message, array $context = []){
+		$this->log(LogLevel::NOTICE, $message, $context);
 	}
 
 	/**
@@ -209,10 +208,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function info($message, array $context = []):Log{
-		return $this->log(LogLevel::INFO, $message, $context);
+	public function info($message, array $context = []){
+		$this->log(LogLevel::INFO, $message, $context);
 	}
 
 	/**
@@ -221,10 +220,10 @@ class Log implements LoggerInterface{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return \chillerlan\Logger\Log
+	 * @return void
 	 */
-	public function debug($message, array $context = []):Log{
-		return $this->log(LogLevel::DEBUG, $message, $context);
+	public function debug($message, array $context = []){
+		$this->log(LogLevel::DEBUG, $message, $context);
 	}
 
 }

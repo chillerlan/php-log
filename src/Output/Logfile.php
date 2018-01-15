@@ -16,7 +16,7 @@ namespace chillerlan\Logger\Output;
  */
 class Logfile extends ConsoleLog{
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		$data = $this->message($level, $message, $context);
 		// ... @todo
 	}

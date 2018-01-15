@@ -16,7 +16,7 @@ namespace chillerlan\Logger\Output;
  */
 class ServerErrorlog extends LogOutputAbstract{
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		// TODO: Implement log() method.
 	}
 

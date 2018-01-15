@@ -22,7 +22,7 @@ namespace chillerlan\Logger\Output;
  */
 class NullLogger extends LogOutputAbstract{
 
-	public function log(string $level, string $message, array $context = null){
+	protected function __log(string $level, string $message, array $context = null){
 		// go along, nothing to see here.
 	}
 

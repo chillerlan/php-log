@@ -13,13 +13,21 @@
 namespace chillerlan\Logger;
 
 use chillerlan\Traits\Container;
+use Psr\Log\LogLevel;
 
 /**
+ * @property string $minLogLevel
  * @property string $consoleFormat
  * @property string $consoleDateFormat
  */
 class LogOptions{
 	use Container;
+
+	/**
+	 * @see \Psr\Log\LogLevel
+	 * @var string
+	 */
+	protected $minLogLevel = LogLevel::NOTICE;
 
 	/**
 	 * @see sprintf()

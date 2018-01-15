@@ -36,4 +36,12 @@ abstract class LogOutputAbstract implements LogOutputInterface{
 		return $this;
 	}
 
+	abstract protected function __log(string $level, string $message, array $context = null);
+
+	public function log(string $level, string $message, array $context = null){ // @todo: loglevel bitmask
+		if((array_key_exists($level, $this::LEVELS) && $this::LEVELS[$level] >= $this::LEVELS[$this->options->minLogLevel]) || (!array_key_exists($level, $this::LEVELS) && !empty($level))){
+			$this->__log($level, $message, $context);
+		}
+	}
+
 }

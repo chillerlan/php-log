@@ -1,6 +1,6 @@
 <?php
 /**
- * Class LogTrait
+ * Trait LogTrait
  *
  * @filesource   LogTrait.php
  * @created      08.01.2018
@@ -12,8 +12,7 @@
 
 namespace chillerlan\Logger;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Psr\Log\{LoggerInterface, LogLevel};
 
 /**
  *
@@ -23,7 +22,7 @@ use Psr\Log\LogLevel;
 trait LogTrait{
 
 	/**
-	 * @var \chillerlan\Logger\Log
+	 * @var \Psr\Log\LoggerInterface
 	 */
 	protected $log;
 
@@ -32,12 +31,10 @@ trait LogTrait{
 	 *
 	 * @param \Psr\Log\LoggerInterface $logger
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	public function setLogger(LoggerInterface $logger){
 		$this->log = $logger;
-
-		return $this;
 	}
 
 	/**
@@ -47,7 +44,7 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function log($level, $message, array $context = null){
 
@@ -55,7 +52,6 @@ trait LogTrait{
 			$this->log->log($level, $message, $context ?? []);
 		}
 
-		return $this;
 	}
 
 	/**
@@ -64,12 +60,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function emergency($message, array $context = null){
 		$this->log(LogLevel::EMERGENCY, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -81,12 +75,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function alert($message, array $context = null){
 		$this->log(LogLevel::ALERT, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -97,12 +89,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function critical($message, array $context = null){
 		$this->log(LogLevel::CRITICAL, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -112,12 +102,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function error($message, array $context = null){
 		$this->log(LogLevel::ERROR, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -129,12 +117,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function warning($message, array $context = null){
 		$this->log(LogLevel::WARNING, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -143,12 +129,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function notice($message, array $context = null){
 		$this->log(LogLevel::NOTICE, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -159,12 +143,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function info($message, array $context = null){
 		$this->log(LogLevel::INFO, $message, $context);
-
-		return $this;
 	}
 
 	/**
@@ -173,12 +155,10 @@ trait LogTrait{
 	 * @param string $message
 	 * @param array  $context
 	 *
-	 * @return $this
+	 * @return void
 	 */
 	protected function debug($message, array $context = null){
 		$this->log(LogLevel::DEBUG, $message, $context);
-
-		return $this;
 	}
 
 }

@@ -33,16 +33,15 @@ abstract class LogTest extends TestCase{
 	}
 
 	public function testLog(){
-		$this->logger
-			->emergency('emergency')
-			->alert('alert')
-			->critical('critical')
-			->warning('warning')
-			->notice('notice')
-			->info('info')
-			->debug('debug')
-			->log('whatever', 'whatever')
-			->close();
+		$this->logger->emergency('emergency');
+		$this->logger->alert('alert');
+		$this->logger->critical('critical');
+		$this->logger->warning('warning');
+		$this->logger->notice('notice');
+		$this->logger->info('info');
+		$this->logger->debug('debug');
+		$this->logger->log('whatever', 'whatever');
+		$this->logger->close();
 
 		$this->markTestSkipped();
 	}
