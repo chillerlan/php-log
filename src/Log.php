@@ -13,8 +13,7 @@
 namespace chillerlan\Logger;
 
 use chillerlan\Logger\Output\LogOutputInterface;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Psr\Log\{LoggerInterface, LogLevel};
 
 /**
  */
@@ -59,8 +58,8 @@ class Log implements LoggerInterface{
 	 *
 	 * @return \chillerlan\Logger\Log
 	 */
-	public function addInstance(LogOutputInterface $logger, string $instanceName):Log{
-		$this->instances[$instanceName] = $logger;
+	public function addInstance(LogOutputInterface $logger, string $instanceName = null):Log{
+		$this->instances[$instanceName ?? 'default'] = $logger;
 
 		return $this;
 	}
@@ -105,13 +104,8 @@ class Log implements LoggerInterface{
 	 * @param array  $context
 	 *
 	 * @return void
-	 * @throws \chillerlan\Logger\LogException
 	 */
 	public function log($level, $message, array $context = []){
-
-		if(empty($this->instances)){
-			throw new LogException('no logger instance available');
-		}
 
 		foreach($this->instances as $logger){
 			$logger->log($level, $message, $context);
