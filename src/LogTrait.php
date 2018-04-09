@@ -47,11 +47,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function log($level, $message, array $context = null){
-
-		if($this->log instanceof LoggerInterface){
-			$this->log->log($level, $message, $context ?? []);
-		}
-
+		$this->log->log($level, $message, $context ?? []);
 	}
 
 	/**
@@ -63,7 +59,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function emergency($message, array $context = null){
-		$this->log(LogLevel::EMERGENCY, $message, $context);
+		$this->log->emergency($message, $context);
 	}
 
 	/**
@@ -78,7 +74,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function alert($message, array $context = null){
-		$this->log(LogLevel::ALERT, $message, $context);
+		$this->log->alert($message, $context);
 	}
 
 	/**
@@ -92,7 +88,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function critical($message, array $context = null){
-		$this->log(LogLevel::CRITICAL, $message, $context);
+		$this->log->critical($message, $context);
 	}
 
 	/**
@@ -105,7 +101,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function error($message, array $context = null){
-		$this->log(LogLevel::ERROR, $message, $context);
+		$this->log->error($message, $context);
 	}
 
 	/**
@@ -120,7 +116,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function warning($message, array $context = null){
-		$this->log(LogLevel::WARNING, $message, $context);
+		$this->log->warning($message, $context);
 	}
 
 	/**
@@ -132,7 +128,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function notice($message, array $context = null){
-		$this->log(LogLevel::NOTICE, $message, $context);
+		$this->log->notice($message, $context);
 	}
 
 	/**
@@ -146,7 +142,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function info($message, array $context = null){
-		$this->log(LogLevel::INFO, $message, $context);
+		$this->log->info($message, $context);
 	}
 
 	/**
@@ -158,7 +154,7 @@ trait LogTrait{
 	 * @return void
 	 */
 	protected function debug($message, array $context = null){
-		$this->log(LogLevel::DEBUG, $message, $context);
+		$this->log->debug($message, $context);
 	}
 
 }
