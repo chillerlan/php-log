@@ -25,24 +25,56 @@ abstract class LogOutputAbstract implements LogOutputInterface{
 	 */
 	protected $options;
 
+	/**
+	 * LogOutputAbstract constructor.
+	 *
+	 * @param \chillerlan\Traits\ContainerInterface|null $options
+	 */
 	public function __construct(ContainerInterface $options = null){
 		$this->options = $options ?? new LogOptions;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function __destruct(){
 		$this->close();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function close():LogOutputInterface{
 		return $this;
 	}
 
-	abstract protected function __log(string $level, string $message, array $context = null);
+	/**
+	 * @param string $level
+	 * @param string $message
+	 * @param array  $context
+	 *
+	 * @return mixed
+	 */
+	abstract protected function __log(string $level, string $message, array $context = []);
 
-	public function log(string $level, string $message, array $context = null){ // @todo: loglevel bitmask
+	/**
+	 * @inheritdoc
+	 */
+	public function log(string $level, string $message, array $context = []){ // @todo: loglevel bitmask
 		if((array_key_exists($level, $this::LEVELS) && $this::LEVELS[$level] >= $this::LEVELS[$this->options->minLogLevel]) || (!array_key_exists($level, $this::LEVELS) && !empty($level))){
 			$this->__log($level, $message, $context);
 		}
+	}
+
+	/**
+	 * @param string     $level
+	 * @param string     $message
+	 * @param array|null $context
+	 *
+	 * @return string
+	 */
+	protected function message(string $level, string $message, array $context = null){
+		return sprintf($this->options->consoleFormat, date($this->options->consoleDateFormat), $level, $message).PHP_EOL;
 	}
 
 }

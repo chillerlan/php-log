@@ -16,17 +16,20 @@ namespace chillerlan\Logger\Output;
  */
 class ConsoleLog extends LogOutputAbstract{
 
+	/**
+	 * @inheritdoc
+	 */
 	protected function __log(string $level, string $message, array $context = null){
 		echo $this->message($level, $message, $context);
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function close():LogOutputInterface{
 		echo  $this->message('log closed', '~~~');
 
 		return $this;
 	}
 
-	protected function message(string $level, string $message, array $context = null){
-		return sprintf($this->options->consoleFormat, date($this->options->consoleDateFormat), $level, $message).PHP_EOL;
-	}
 }

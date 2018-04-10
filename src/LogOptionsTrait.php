@@ -34,4 +34,26 @@ trait LogOptionsTrait{
 	 */
 	protected $consoleDateFormat = 'c';
 
+	/**
+	 * a database table for the log
+	 *
+	 * @var string
+	 */
+	protected $dbLogTable;
+
+	/**
+	 * @var string
+	 */
+	protected $logfileDir;
+
+	/**
+	 * @var string
+	 */
+	protected $logfileName = 'php-logger';
+
+	/**
+	 * @var string
+	 */
+	protected $logfileExt = 'log';
+
 }

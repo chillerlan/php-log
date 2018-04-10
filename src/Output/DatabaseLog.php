@@ -15,8 +15,6 @@ namespace chillerlan\Logger\Output;
 use chillerlan\Database\Connection;
 use chillerlan\Logger\LogOptions;
 
-/**
- */
 class DatabaseLog extends LogOutputAbstract{
 
 	/**
@@ -38,7 +36,31 @@ class DatabaseLog extends LogOutputAbstract{
 		$this->db->connect();
 	}
 
-	protected function __log(string $level, string $message, array $context = null){
-		// TODO: Implement log() method.
+	/**
+	 * @inheritdoc
+	 */
+	protected function __log(string $level, string $message, array $context = []){
+
+		// TODO: $context, tests
+		$this->db->insert
+			->into($this->options->dbLogTable)
+			->values([
+				'level'   => $level,
+				'message' => $message,
+				'context' => json_encode($context),
+				'time'    => time(),
+			])
+			->execute()
+		;
 	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function close():LogOutputInterface{
+		$this->db->disconnect();
+
+		return $this;
+	}
+
 }

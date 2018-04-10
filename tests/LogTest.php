@@ -13,6 +13,7 @@
 namespace chillerlan\LoggerTest;
 
 use chillerlan\Logger\Log;
+use chillerlan\Logger\LogOptions;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
@@ -23,7 +24,16 @@ abstract class LogTest extends TestCase{
 	 */
 	protected $logger;
 
+	/**
+	 * @var \chillerlan\Logger\LogOptions
+	 */
+	protected $options;
+
 	protected function setUp(){
+		$this->options = new LogOptions([
+			'logfileDir' => __DIR__,
+		]);
+
 		$this->logger = new Log;
 	}
 

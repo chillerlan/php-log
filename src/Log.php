@@ -13,12 +13,14 @@
 namespace chillerlan\Logger;
 
 use chillerlan\Logger\Output\LogOutputInterface;
-use Psr\Log\{LoggerInterface, LogLevel};
+use Psr\Log\{
+	LoggerInterface, LoggerTrait
+};
 
 /**
  */
 class Log implements LoggerInterface{
-
+	use LoggerTrait;
 	/**
 	 * @var \chillerlan\Logger\LogOptions
 	 */
@@ -27,7 +29,7 @@ class Log implements LoggerInterface{
 	/**
 	 * @var \chillerlan\Logger\Output\LogOutputInterface[]
 	 */
-	protected $instances = [];
+	protected $logOutputInterfaces = [];
 
 	/**
 	 *
@@ -43,9 +45,9 @@ class Log implements LoggerInterface{
 	 */
 	public function close():Log{
 
-		if(!empty($this->instances)){
-			foreach($this->instances as $instanceName => $instance){
-				unset($this->instances[$instanceName]);
+		if(!empty($this->logOutputInterfaces)){
+			foreach($this->logOutputInterfaces as $instanceName => $instance){
+				unset($this->logOutputInterfaces[$instanceName]);
 			}
 		}
 
@@ -59,7 +61,7 @@ class Log implements LoggerInterface{
 	 * @return \chillerlan\Logger\Log
 	 */
 	public function addInstance(LogOutputInterface $logger, string $instanceName = null):Log{
-		$this->instances[$instanceName ?? 'default'] = $logger;
+		$this->logOutputInterfaces[$instanceName ?? 'default'] = $logger;
 
 		return $this;
 	}
@@ -72,11 +74,11 @@ class Log implements LoggerInterface{
 	 */
 	public function getInstance(string $instanceName):LogOutputInterface{
 
-		if(!array_key_exists($instanceName, $this->instances)){
+		if(!array_key_exists($instanceName, $this->logOutputInterfaces)){
 			throw new LogException('invalid logger instance: '.$instanceName);
 		}
 
-		return $this->instances[$instanceName];
+		return $this->logOutputInterfaces[$instanceName];
 	}
 
 	/**
@@ -87,11 +89,11 @@ class Log implements LoggerInterface{
 	 */
 	public function removeInstance(string $instanceName):Log{
 
-		if(!array_key_exists($instanceName, $this->instances)){
+		if(!array_key_exists($instanceName, $this->logOutputInterfaces)){
 			throw new LogException('invalid logger instance: '.$instanceName);
 		}
 
-		unset($this->instances[$instanceName]);
+		unset($this->logOutputInterfaces[$instanceName]);
 
 		return $this;
 	}
@@ -99,125 +101,20 @@ class Log implements LoggerInterface{
 	/**
 	 * Logs with an arbitrary level.
 	 *
-	 * @param mixed  $level
-	 * @param string $message
-	 * @param array  $context
+	 * @param mixed       $level
+	 * @param string      $message
+	 * @param array       $context
+	 *
+	 * @param string|null $instance
 	 *
 	 * @return void
 	 */
-	public function log($level, $message, array $context = []){
+	public function log($level, $message, array $context = [], string $instance = null){
 
-		foreach($this->instances as $logger){
+		foreach($this->logOutputInterfaces as $logger){
 			$logger->log($level, $message, $context);
 		}
 
-	}
-
-	/**
-	 * System is unusable.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function emergency($message, array $context = []){
-		$this->log(LogLevel::EMERGENCY, $message, $context);
-	}
-
-	/**
-	 * Action must be taken immediately.
-	 *
-	 * Example: Entire website down, database unavailable, etc. This should
-	 * trigger the SMS alerts and wake you up.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function alert($message, array $context = []){
-		$this->log(LogLevel::ALERT, $message, $context);
-	}
-
-	/**
-	 * Critical conditions.
-	 *
-	 * Example: Application component unavailable, unexpected exception.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function critical($message, array $context = []){
-		$this->log(LogLevel::CRITICAL, $message, $context);
-	}
-
-	/**
-	 * Runtime errors that do not require immediate action but should typically
-	 * be logged and monitored.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function error($message, array $context = []){
-		$this->log(LogLevel::ERROR, $message, $context);
-	}
-
-	/**
-	 * Exceptional occurrences that are not errors.
-	 *
-	 * Example: Use of deprecated APIs, poor use of an API, undesirable things
-	 * that are not necessarily wrong.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function warning($message, array $context = []){
-		$this->log(LogLevel::WARNING, $message, $context);
-	}
-
-	/**
-	 * Normal but significant events.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function notice($message, array $context = []){
-		$this->log(LogLevel::NOTICE, $message, $context);
-	}
-
-	/**
-	 * Interesting events.
-	 *
-	 * Example: User logs in, SQL logs.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function info($message, array $context = []){
-		$this->log(LogLevel::INFO, $message, $context);
-	}
-
-	/**
-	 * Detailed debug information.
-	 *
-	 * @param string $message
-	 * @param array  $context
-	 *
-	 * @return void
-	 */
-	public function debug($message, array $context = []){
-		$this->log(LogLevel::DEBUG, $message, $context);
 	}
 
 }

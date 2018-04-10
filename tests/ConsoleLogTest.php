@@ -21,7 +21,7 @@ class ConsoleLogTest extends LogTest{
 	protected function setUp(){
 		parent::setUp();
 
-		$this->logger->addInstance(new ConsoleLog, 'console');
+		$this->logger->addInstance(new ConsoleLog($this->options), 'console');
 	}
 
 }

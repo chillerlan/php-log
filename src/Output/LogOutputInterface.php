@@ -46,7 +46,7 @@ interface LogOutputInterface{
 	 * @param string     $message
 	 * @param array|null $context
 	 */
-	public function log(string $level, string $message, array $context = null);
+	public function log(string $level, string $message, array $context = []);
 
 	/**
 	 * this method is being called in LogOutputInterface::__destruct()

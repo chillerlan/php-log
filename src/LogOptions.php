@@ -18,6 +18,10 @@ use chillerlan\Traits\ContainerAbstract;
  * @property string $minLogLevel
  * @property string $consoleFormat
  * @property string $consoleDateFormat
+ * @property string $dbLogTable
+ * @property string $logfileDir
+ * @property string $logfileName
+ * @property string $logfileExt
  */
 class LogOptions extends ContainerAbstract{
 	use LogOptionsTrait;
