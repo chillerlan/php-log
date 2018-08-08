@@ -13,7 +13,7 @@
 namespace chillerlan\Logger\Output;
 
 use chillerlan\Database\Connection;
-use chillerlan\Logger\LogOptions;
+use chillerlan\Traits\ImmutableSettingsInterface;
 
 class DatabaseLog extends LogOutputAbstract{
 
@@ -26,10 +26,10 @@ class DatabaseLog extends LogOutputAbstract{
 	/**
 	 * DatabaseLog constructor.
 	 *
-	 * @param \chillerlan\Logger\LogOptions $options
+	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
 	 * @param \chillerlan\Database\Connection    $db
 	 */
-	public function __construct(LogOptions $options, Connection $db){
+	public function __construct(ImmutableSettingsInterface $options, Connection $db){
 		$this->options = $options;
 		$this->db      = $db;
 

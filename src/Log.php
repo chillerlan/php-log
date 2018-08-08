@@ -13,18 +13,10 @@
 namespace chillerlan\Logger;
 
 use chillerlan\Logger\Output\LogOutputInterface;
-use Psr\Log\{
-	LoggerInterface, LoggerTrait
-};
+use Psr\Log\{LoggerInterface, LoggerTrait};
 
-/**
- */
 class Log implements LoggerInterface{
 	use LoggerTrait;
-	/**
-	 * @var \chillerlan\Logger\LogOptions
-	 */
-	protected $options;
 
 	/**
 	 * @var \chillerlan\Logger\Output\LogOutputInterface[]
@@ -32,7 +24,7 @@ class Log implements LoggerInterface{
 	protected $logOutputInterfaces = [];
 
 	/**
-	 *
+	 * @return void
 	 */
 	public function __destruct(){
 		$this->close();
@@ -109,7 +101,7 @@ class Log implements LoggerInterface{
 	 *
 	 * @return void
 	 */
-	public function log($level, $message, array $context = [], string $instance = null){
+	public function log($level, $message, array $context = [], string $instance = null):void{
 
 		foreach($this->logOutputInterfaces as $logger){
 			$logger->log($level, $message, $context);

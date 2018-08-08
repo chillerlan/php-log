@@ -13,7 +13,7 @@
 namespace chillerlan\Logger\Output;
 
 use chillerlan\Logger\LogOptions;
-use chillerlan\Traits\ContainerInterface;
+use chillerlan\Traits\ImmutableSettingsInterface;
 
 /**
  *
@@ -28,9 +28,9 @@ abstract class LogOutputAbstract implements LogOutputInterface{
 	/**
 	 * LogOutputAbstract constructor.
 	 *
-	 * @param \chillerlan\Traits\ContainerInterface|null $options
+	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
 	 */
-	public function __construct(ContainerInterface $options = null){
+	public function __construct(ImmutableSettingsInterface $options = null){
 		$this->options = $options ?? new LogOptions;
 	}
 

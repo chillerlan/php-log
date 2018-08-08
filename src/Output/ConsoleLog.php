@@ -12,8 +12,6 @@
 
 namespace chillerlan\Logger\Output;
 
-/**
- */
 class ConsoleLog extends LogOutputAbstract{
 
 	/**

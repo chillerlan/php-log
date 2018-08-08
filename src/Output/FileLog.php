@@ -1,8 +1,8 @@
 <?php
 /**
- * Class Logfile
+ * Class FileLog
  *
- * @filesource   Logfile.php
+ * @filesource   FileLog.php
  * @created      04.01.2018
  * @package      chillerlan\Logger\Output
  * @author       Smiley <smiley@chillerlan.net>
@@ -13,11 +13,9 @@
 namespace chillerlan\Logger\Output;
 
 use chillerlan\Logger\LogException;
-use chillerlan\Traits\ContainerInterface;
+use chillerlan\Traits\ImmutableSettingsInterface;
 
-/**
- */
-class Logfile extends LogOutputAbstract{
+class FileLog extends LogOutputAbstract{
 
 	/**
 	 * @var bool|resource
@@ -25,13 +23,13 @@ class Logfile extends LogOutputAbstract{
 	protected $fh;
 
 	/**
-	 * Logfile constructor.
+	 * FileLog constructor.
 	 *
-	 * @param \chillerlan\Traits\ContainerInterface|null $options
+	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
 	 *
 	 * @throws \chillerlan\Logger\LogException
 	 */
-	public function __construct(ContainerInterface $options = null){
+	public function __construct(ImmutableSettingsInterface $options = null){
 		parent::__construct($options);
 
 		if(!is_writable($this->options->logfileDir)){

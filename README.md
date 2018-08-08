@@ -1,6 +1,6 @@
 # chillerlan/php-log
 
-A psr/logger-interface implementation. PHP 7+
+A cheap psr/logger-interface implementation. PHP 7.2+
 
 [![version][packagist-badge]][packagist]
 [![license][license-badge]][license]
@@ -34,8 +34,8 @@ A psr/logger-interface implementation. PHP 7+
 ```json
 {
 	"require": {
-		"php": ">=7.0.3",
-		"chillerlan/php-log": "dev-master"
+		"php": ">=7.2.0",
+		"chillerlan/php-log": "^2.0"
 	}
 }
 ```

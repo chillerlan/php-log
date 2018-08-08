@@ -12,7 +12,7 @@
 
 namespace chillerlan\LoggerTest;
 
-use chillerlan\Logger\Output\Logfile;
+use chillerlan\Logger\Output\FileLog;
 
 /**
  */
@@ -21,7 +21,7 @@ class FileLogTest extends LogTest{
 	protected function setUp(){
 		parent::setUp();
 
-		$this->logger->addInstance(new Logfile($this->options), 'file');
+		$this->logger->addInstance(new FileLog($this->options), 'file');
 	}
 
 }
