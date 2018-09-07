@@ -12,7 +12,7 @@
 
 namespace chillerlan\Logger;
 
-use chillerlan\Traits\ImmutableSettingsAbstract;
+use chillerlan\Settings\SettingsContainerAbstract;
 
 /**
  * @property string $minLogLevel
@@ -23,6 +23,6 @@ use chillerlan\Traits\ImmutableSettingsAbstract;
  * @property string $logfileName
  * @property string $logfileExt
  */
-class LogOptions extends ImmutableSettingsAbstract{
+class LogOptions extends SettingsContainerAbstract{
 	use LogOptionsTrait;
 }

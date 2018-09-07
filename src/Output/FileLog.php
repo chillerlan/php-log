@@ -13,7 +13,7 @@
 namespace chillerlan\Logger\Output;
 
 use chillerlan\Logger\LogException;
-use chillerlan\Traits\ImmutableSettingsInterface;
+use chillerlan\Settings\SettingsContainerInterface;
 
 class FileLog extends LogOutputAbstract{
 
@@ -25,11 +25,11 @@ class FileLog extends LogOutputAbstract{
 	/**
 	 * FileLog constructor.
 	 *
-	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
+	 * @param \chillerlan\Settings\SettingsContainerInterface|null $options
 	 *
 	 * @throws \chillerlan\Logger\LogException
 	 */
-	public function __construct(ImmutableSettingsInterface $options = null){
+	public function __construct(SettingsContainerInterface $options = null){
 		parent::__construct($options);
 
 		if(!is_writable($this->options->logfileDir)){

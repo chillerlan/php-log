@@ -12,13 +12,13 @@
 
 namespace chillerlan\Logger\Output;
 
-use chillerlan\Database\Connection;
-use chillerlan\Traits\ImmutableSettingsInterface;
+use chillerlan\Database\Database;
+use chillerlan\Settings\SettingsContainerInterface;
 
 class DatabaseLog extends LogOutputAbstract{
 
 	/**
-	 * @var \chillerlan\Database\Connection
+	 * @var \chillerlan\Database\Database
 	 */
 	protected $db;
 
@@ -26,10 +26,10 @@ class DatabaseLog extends LogOutputAbstract{
 	/**
 	 * DatabaseLog constructor.
 	 *
-	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
-	 * @param \chillerlan\Database\Connection    $db
+	 * @param \chillerlan\Settings\SettingsContainerInterface|null $options
+	 * @param \chillerlan\Database\Database    $db
 	 */
-	public function __construct(ImmutableSettingsInterface $options, Connection $db){
+	public function __construct(SettingsContainerInterface $options, Database $db){
 		$this->options = $options;
 		$this->db      = $db;
 
@@ -50,7 +50,7 @@ class DatabaseLog extends LogOutputAbstract{
 				'context' => json_encode($context),
 				'time'    => time(),
 			])
-			->execute()
+			->query()
 		;
 	}
 

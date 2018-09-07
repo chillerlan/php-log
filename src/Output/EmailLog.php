@@ -12,11 +12,10 @@
 
 namespace chillerlan\Logger\Output;
 
-use chillerlan\Traits\ImmutableSettingsInterface;
+use chillerlan\Settings\SettingsContainerInterface;
 use PHPMailer\PHPMailer\PHPMailer;
 
-/**
- */
+
 class EmailLog extends LogOutputAbstract{
 
 	protected $mailer;
@@ -25,10 +24,10 @@ class EmailLog extends LogOutputAbstract{
 	/**
 	 * EmailLog constructor.
 	 *
-	 * @param \chillerlan\Traits\ImmutableSettingsInterface|null $options
+	 * @param \chillerlan\Settings\SettingsContainerInterface|null $options
 	 * @param \PHPMailer\PHPMailer\PHPMailer     $mailer
 	 */
-	public function __construct(ImmutableSettingsInterface $options, PHPMailer $mailer){
+	public function __construct(SettingsContainerInterface $options, PHPMailer $mailer){
 		$this->options = $options;
 		$this->mailer  = $mailer;
 	}
